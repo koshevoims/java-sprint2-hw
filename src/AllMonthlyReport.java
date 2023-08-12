@@ -18,26 +18,18 @@ public class AllMonthlyReport {
             for (int j = 1; j < lines.size(); j++) {
                 String[] lineContents = lines.get(j).split(",");
                 String item_name = lineContents[0];
-                boolean is_expense = Boolean.parseBoolean(lineContents[1]);
+                boolean isExpense = Boolean.parseBoolean(lineContents[1]);
                 int quantity = Integer.parseInt(lineContents[2]);
-                int unit_price = Integer.parseInt(lineContents[3]);
+                int unitPrice = Integer.parseInt(lineContents[3]);
 
-                MonthReportLine reportLine = new MonthReportLine(item_name, is_expense, quantity, unit_price);
+                MonthReportLine reportLine = new MonthReportLine(item_name, isExpense, quantity, unitPrice);
                 monthReportsLines.add(reportLine);
 
             }
             allMonthReport.put(("0"+ i), monthReportsLines);
-            //monthReportsLines.clear();
+
         }
         isUsed = true;
 
     }
 }
-
-
-
-// Поля месячного отчета
-//item_name,
-//is_expense,
-//quantity,
-// unit_price

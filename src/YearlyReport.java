@@ -16,10 +16,10 @@ public class YearlyReport {
             String[] lineContents = lines.get(j).split(",");
             String month = lineContents[0];
             int amount = Integer.parseInt(lineContents[1]);
-            boolean is_expense = Boolean.parseBoolean(lineContents[2]);
+            boolean isExpense = Boolean.parseBoolean(lineContents[2]);
 
             YearlyReportLine reportLine;
-            reportLine = new YearlyReportLine(month, amount, is_expense);
+            reportLine = new YearlyReportLine(month, amount, isExpense);
             yearLines.add(reportLine);
 
         }

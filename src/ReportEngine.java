@@ -34,8 +34,8 @@ public class ReportEngine {
             int sumSpend = 0;
             int sumProfit = 0;
             for (MonthReportLine monthReportLine : MonthReportLines) {
-                if (monthReportLine.is_expense) sumSpend += monthReportLine.quantity*monthReportLine.unit_price;
-                else sumProfit += monthReportLine.quantity*monthReportLine.unit_price;
+                if (monthReportLine.is_expense) sumSpend += monthReportLine.quantity*monthReportLine.unitPrice;
+                else sumProfit += monthReportLine.quantity*monthReportLine.unitPrice;
             }
             MonthlyReportConverted.put(true, sumSpend);
             MonthlyReportConverted.put(false, sumProfit);
@@ -50,12 +50,12 @@ public class ReportEngine {
             if (!yearlyReportConverted.containsKey(yearLine.month)) {
                 yearlyReportConverted.put(yearLine.month, new HashMap<>());
                 HashMap<Boolean, Integer> yearReportLineConverted = new HashMap<>();
-                yearReportLineConverted.put(yearLine.is_expense, yearLine.amount);
+                yearReportLineConverted.put(yearLine.isExpense, yearLine.amount);
                 yearlyReportConverted.put(yearLine.month, yearReportLineConverted);
             } else {
                 HashMap<Boolean, Integer> yearReportLineConverted = new HashMap<>();
                 yearReportLineConverted = yearlyReportConverted.get(yearLine.month);
-                yearReportLineConverted.put(yearLine.is_expense, yearLine.amount);
+                yearReportLineConverted.put(yearLine.isExpense, yearLine.amount);
                 yearlyReportConverted.put(yearLine.month, yearReportLineConverted);
             }
         }
@@ -69,17 +69,10 @@ public class ReportEngine {
                 check = false;
             }
         }
-        //System.out.println ("-----------------------------------------------------------------");
+
         return check;
 
-        /*
-
-        - Сверить отчёты — по сохранённым данным проверить, сходятся ли отчёты за месяцы и за год.
-        1)+ Проверить, что месячные и годовой отчёты были считаны из файлов. В случае если этого не было сделано, нужно предложить сначала считать данные.
-        2)+ Подсчитать суммы доходов и расходов по каждому из месяцев.
-        3)+ Сверить полученные суммы с суммой доходов и расходов в отчёте по году.
-        4)+ При обнаружении несоответствия программа должна вывести месяц, где оно обнаружено.
-        5)+ Если несоответствий не обнаружено, приложение должно вывести только информацию об успешном завершении операции. */
+    
     }
 
 
@@ -95,14 +88,14 @@ public class ReportEngine {
             ArrayList<MonthReportLine> monthReportsLines =  allMonthlyReport.allMonthReport.get(month);
             for (MonthReportLine monthReportsLine : monthReportsLines) {
                 if (monthReportsLine.is_expense) {
-                    if (monthReportsLine.quantity * monthReportsLine.unit_price > maxSpend) {
+                    if (monthReportsLine.quantity * monthReportsLine.unitPrice > maxSpend) {
                         maxSpendName = monthReportsLine.item_name;
-                        maxSpend = monthReportsLine.quantity * monthReportsLine.unit_price;
+                        maxSpend = monthReportsLine.quantity * monthReportsLine.unitPrice;
                     }
                 } else {
-                    if (monthReportsLine.quantity * monthReportsLine.unit_price > maxProfit) {
+                    if (monthReportsLine.quantity * monthReportsLine.unitPrice > maxProfit) {
                         maxProfitName = monthReportsLine.item_name;
-                        maxProfit = monthReportsLine.quantity * monthReportsLine.unit_price;
+                        maxProfit = monthReportsLine.quantity * monthReportsLine.unitPrice;
 
                     }
                 }
@@ -110,27 +103,19 @@ public class ReportEngine {
             System.out.println("Cамый прибыльный товар: " + maxProfitName + ". Сумма: " + maxProfit);
             System.out.println("Cамая большая трата: " + maxSpendName + ". Сумма: " + maxSpend);
         }
-        //System.out.println ("-----------------------------------------------------------------");
-
-
-       /* - Вывести информацию обо всех месячных отчётах — по сохранённым данным вывести в консоль имеющуюся информацию.
-        1)+ название месяца;
-        2)+ самый прибыльный товар, название товара и сумму;
-        3)+ самую большую трату, название товара и сумму. */
-
 
     }
     public void yearlyReportInfo() {
         System.out.println("2021");
         for ( YearlyReportLine yearLine : yearlyReport.yearLines) {
-            if (!yearLine.is_expense) System.out.println("Прибыль в " + getMonthName(yearLine.month) + " составила "+ yearLine.amount);
+            if (!yearLine.isExpense) System.out.println("Прибыль в " + getMonthName(yearLine.month) + " составила "+ yearLine.amount);
         }
 
 
         int sumSpend = 0;
         int sumProfit = 0;
         for ( YearlyReportLine yearLine : yearlyReport.yearLines) {
-            if (yearLine.is_expense) sumSpend += yearLine.amount;
+            if (yearLine.isExpense) sumSpend += yearLine.amount;
             else sumProfit += yearLine.amount;
         }
         double avgSpend = (double)sumSpend/yearlyReport.yearLines.size();
@@ -139,13 +124,7 @@ public class ReportEngine {
         System.out.println("Cредний расход за все имеющиеся операции в году: " + avgSpend);
         System.out.println("Cредний доход за все имеющиеся операции в году: " + avgProfit);
 
-        //System.out.println("-----------------------------------------------------------------");
 
-        /* - Вывести информацию о годовом отчёте — по сохранённым данным вывести в консоль имеющуюся информацию.
-        1)+ рассматриваемый год;
-        2)+ прибыль по каждому месяцу;
-        3)+ средний расход за все имеющиеся операции в году;
-        4)+ средний доход за все имеющиеся операции в году.*/
     }
 
 
