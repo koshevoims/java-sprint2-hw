@@ -26,7 +26,3 @@ public class YearlyReport {
         isUsed = true;
     }
 }
-    // Схема годового отчета
-    // month,
-    // amount,
-    // is_expense
