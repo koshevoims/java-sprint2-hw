@@ -34,7 +34,7 @@ public class ReportEngine {
             int sumSpend = 0;
             int sumProfit = 0;
             for (MonthReportLine monthReportLine : MonthReportLines) {
-                if (monthReportLine.is_expense) sumSpend += monthReportLine.quantity*monthReportLine.unitPrice;
+                if (monthReportLine.isExpense) sumSpend += monthReportLine.quantity*monthReportLine.unitPrice;
                 else sumProfit += monthReportLine.quantity*monthReportLine.unitPrice;
             }
             MonthlyReportConverted.put(true, sumSpend);
@@ -87,7 +87,7 @@ public class ReportEngine {
 
             ArrayList<MonthReportLine> monthReportsLines =  allMonthlyReport.allMonthReport.get(month);
             for (MonthReportLine monthReportsLine : monthReportsLines) {
-                if (monthReportsLine.is_expense) {
+                if (monthReportsLine.isExpense) {
                     if (monthReportsLine.quantity * monthReportsLine.unitPrice > maxSpend) {
                         maxSpendName = monthReportsLine.item_name;
                         maxSpend = monthReportsLine.quantity * monthReportsLine.unitPrice;
