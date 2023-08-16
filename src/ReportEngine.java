@@ -34,8 +34,12 @@ public class ReportEngine {
             int sumSpend = 0;
             int sumProfit = 0;
             for (MonthReportLine monthReportLine : MonthReportLines) {
-                if (monthReportLine.isExpense) sumSpend += monthReportLine.quantity*monthReportLine.unitPrice;
-                else sumProfit += monthReportLine.quantity*monthReportLine.unitPrice;
+                if (monthReportLine.isExpense) {
+                    sumSpend += monthReportLine.quantity*monthReportLine.unitPrice;
+                }
+                else {
+                    sumProfit += monthReportLine.quantity*monthReportLine.unitPrice;
+                }
             }
             MonthlyReportConverted.put(true, sumSpend);
             MonthlyReportConverted.put(false, sumProfit);
@@ -69,17 +73,12 @@ public class ReportEngine {
                 check = false;
             }
         }
-
         return check;
-
-
     }
-
 
     public void allMonthlyReportInfo() {
         for (String month : allMonthlyReport.allMonthReport.keySet()){
             System.out.println("В " + getMonthName(month));
-
             String maxSpendName = "";
             String maxProfitName = "";
             int maxSpend = 0;
@@ -89,12 +88,12 @@ public class ReportEngine {
             for (MonthReportLine monthReportsLine : monthReportsLines) {
                 if (monthReportsLine.isExpense) {
                     if (monthReportsLine.quantity * monthReportsLine.unitPrice > maxSpend) {
-                        maxSpendName = monthReportsLine.item_name;
+                        maxSpendName = monthReportsLine.itemName;
                         maxSpend = monthReportsLine.quantity * monthReportsLine.unitPrice;
                     }
                 } else {
                     if (monthReportsLine.quantity * monthReportsLine.unitPrice > maxProfit) {
-                        maxProfitName = monthReportsLine.item_name;
+                        maxProfitName = monthReportsLine.itemName;
                         maxProfit = monthReportsLine.quantity * monthReportsLine.unitPrice;
 
                     }
@@ -111,7 +110,6 @@ public class ReportEngine {
             if (!yearLine.isExpense) System.out.println("Прибыль в " + getMonthName(yearLine.month) + " составила "+ yearLine.amount);
         }
 
-
         int sumSpend = 0;
         int sumProfit = 0;
         for ( YearlyReportLine yearLine : yearlyReport.yearLines) {
@@ -123,11 +121,7 @@ public class ReportEngine {
 
         System.out.println("Cредний расход за все имеющиеся операции в году: " + avgSpend);
         System.out.println("Cредний доход за все имеющиеся операции в году: " + avgProfit);
-
-
     }
-
-
 }
 
 

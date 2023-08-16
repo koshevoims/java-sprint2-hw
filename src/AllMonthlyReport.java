@@ -8,28 +8,22 @@ public class AllMonthlyReport {
     boolean isUsed = false;
     public void loadAllFile(){ // Загружаем все отчеты
 
-
         for (int i = 1; i < 4; i++) {
             String fileName = "m.20210" + i + ".csv";
-
             ArrayList<String> lines = fileReader.readFileContents(fileName);
-
             monthReportsLines  = new ArrayList<>();
             for (int j = 1; j < lines.size(); j++) {
                 String[] lineContents = lines.get(j).split(",");
-                String item_name = lineContents[0];
+                String itemName = lineContents[0];
                 boolean isExpense = Boolean.parseBoolean(lineContents[1]);
                 int quantity = Integer.parseInt(lineContents[2]);
                 int unitPrice = Integer.parseInt(lineContents[3]);
 
-                MonthReportLine reportLine = new MonthReportLine(item_name, isExpense, quantity, unitPrice);
+                MonthReportLine reportLine = new MonthReportLine(itemName, isExpense, quantity, unitPrice);
                 monthReportsLines.add(reportLine);
-
             }
             allMonthReport.put(("0"+ i), monthReportsLines);
-
         }
         isUsed = true;
-
     }
 }

@@ -1,12 +1,12 @@
 public class MonthReportLine {
-    public String item_name;
+    public String itemName;
     public boolean isExpense ;
     public int quantity;
     public int unitPrice;
 
 
-    public MonthReportLine(String item_name, boolean isExpense, int quantity, int unitPrice) {
-        this.item_name = item_name;
+    public MonthReportLine(String itemName, boolean isExpense, int quantity, int unitPrice) {
+        this.itemName = itemName;
         this.isExpense = isExpense;
         this.quantity = quantity;
         this.unitPrice = unitPrice;

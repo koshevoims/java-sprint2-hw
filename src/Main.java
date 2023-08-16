@@ -25,20 +25,34 @@ public class Main {
 
             } else if (command == 3) {
                 if (yearlyReport.isUsed & allMonthlyReport.isUsed) {
-                    if (reportEngine.checkReports()) System.out.println("Сверка успешна");
-                    else System.out.println("Сверка не успешна");
+                    if (reportEngine.checkReports()) {
+                        System.out.println("Сверка успешна");
+                    }
+                    else {
+                        System.out.println("Сверка не успешна");
+                    }
                 }
-                else System.out.println("Загрузите вначале годовой и месячные отчеты");
+                else {
+                    System.out.println("Загрузите вначале годовой и месячные отчеты");
+                }
                 System.out.println ("-----------------------------------------------------------------");
 
             } else if (command == 4) {
-                if (allMonthlyReport.isUsed) reportEngine.allMonthlyReportInfo();
-                else System.out.println("Не загрузили месячные отчеты");
+                if (allMonthlyReport.isUsed) {
+                    reportEngine.allMonthlyReportInfo();
+                }
+                else {
+                    System.out.println("Не загрузили месячные отчеты");
+                }
                 System.out.println ("-----------------------------------------------------------------");
 
             } else if (command == 5) {
-                if (yearlyReport.isUsed) reportEngine.yearlyReportInfo();
-                else System.out.println("Не загрузили годовой отчет");
+                if (yearlyReport.isUsed) {
+                    reportEngine.yearlyReportInfo();
+                }
+                else {
+                    System.out.println("Не загрузили годовой отчет");
+                }
                 System.out.println ("-----------------------------------------------------------------");
 
             } else if (command == 0) {
